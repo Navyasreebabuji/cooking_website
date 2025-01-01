@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Recipe || Final</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <!-- normalize -->
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- main css -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <!-- nav  -->
+    <nav class="navbar">
+      <div class="nav-center">
+        <div class="nav-header">
+          <a href="index.html" class="nav-logo">
+            <img src="./assets/logo.svg" alt="simply recipes" />
+          </a>
+          <button class="nav-btn btn">
+            <i class="fas fa-align-justify"></i>
+          </button>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link"> home </a>
+          <a href="about.html" class="nav-link"> about </a>
+          <a href="tags.html" class="nav-link"> tags </a>
+          <a href="recipes.html" class="nav-link"> recipes </a>
+          <div class="search">
+            <a href="search.html" style="display: inline-flex; align-items: center;">Search <img class="search-icon" src="./assets/search-icon.jpg" alt="search-img"></a>
+          </div>
+
+          <div class="nav-link contact-link">
+            <a href="contact.html" class="btn"> contact </a>
+          </div>
+          <div>
+            <a href="challenge.html" class="btn" style="background-color: green;"> Accept Challenge </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- end of nav -->
+    <main class="page">
+      <div class="recipe-page">
+        <section class="recipe-hero">
+          <img
+            src="./assets/recipes/recipe-2.jpeg"
+            class="img recipe-hero-img"
+          />
+          <article class="recipe-info">
+            <h2>panner-butter-masala</h2>
+            <p>Paneer Butter Masala is a rich and creamy Indian dish made with soft paneer (Indian cottage cheese) simmered in a luscious tomato-based gravy. This beloved vegetarian classic is known for its delightful blend of spices, including garam masala, cumin, and coriander, which infuse the sauce with deep flavor. Finished with butter and cream, Paneer Butter Masala is a favorite in North Indian cuisine, often enjoyed with naan, roti, or rice. Its smooth, velvety texture and vibrant taste make it a perfect choice for special occasions or a comforting meal at home.
+                 </p>
+            <div class="recipe-icons">
+              <article>
+                <i class="fas fa-clock"></i>
+                <h5>prep time</h5>
+                <p>10 min.</p>
+              </article>
+              <article>
+                <i class="far fa-clock"></i>
+                <h5>cook time</h5>
+                <p>15 min.</p>
+              </article>
+              <article>
+                <i class="fas fa-user-friends"></i>
+                <h5>serving</h5>
+                <p>6 servings</p>
+              </article>
+            </div>
+            <p class="recipe-tags">
+              Tags : 
+              <a href="tag-template.html">breakfast</a>
+              <a href="tag-template.html">Lunch</a>
+              <a href="tag-template.html">food</a>
+            </p>
+          </article>
+        </section>
+        <!-- content -->
+        <section class="recipe-content">
+          <article>
+            <h4>instructions</h4>
+            <!-- single instruction -->
+            <div class="single-instruction">
+              <header>
+                <p>step 1</p>
+                <div></div>
+              </header>
+              <p>
+                In a pan, heat oil and 1 tablespoon of butter. Add chopped onions and sauté until golden brown.
+Stir in ginger-garlic paste and sauté for a minute until fragrant.
+              </p>
+            </div>
+            <!-- end of single instruction -->
+            <!-- single instruction -->
+            <div class="single-instruction">
+              <header>
+                <p>step 2</p>
+                <div></div>
+              </header>
+              <p>
+                Add the tomato puree and cook until the oil separates from the mixture.
+Mix in red chili powder, garam masala, cumin powder, and salt. Cook for a few minutes.
+              </p>
+            </div>
+            <!-- end of single instruction -->
+            <!-- single instruction -->
+            <div class="single-instruction">
+              <header>
+                <p>step 3</p>
+                <div></div>
+              </header>
+              <p>
+                Gently add paneer cubes and stir to coat them in the sauce. 
+                Pour in the cream and remaining butter. Mix well and simmer for a few minutes.
+              </p>
+            </div>
+            <div class="single-instruction">
+                <header>
+                  <p>step 4</p>
+                  <div></div>
+                </header>
+                <p>
+                    Garnish with fresh coriander before serving.
+                    Enjoy hot with naan, roti, or rice! </p>
+              </div>
+            <!-- end of single instruction -->
+          </article>
+          <article class="second-column">
+            <div>
+              <h4>ingredients</h4>
+              <p class="single-ingredient">250g paneer, cut into cubes
+                2 tablespoons butter
+                1 tablespoon oil
+                1 large onion, finely chopped
+                2-3 tomatoes, pureed</p>
+              <p class="single-ingredient">1 tablespoon ginger-garlic paste
+                1 teaspoon red chili powder
+                1 teaspoon garam masala
+                1 teaspoon cumin powder</p>
+              <p class="single-ingredient">1/2 cup cream
+                Salt to taste
+                Fresh coriander for garnish</p>
+            </div>
+            <div>
+              <h4>tools</h4>
+             
+              <p class="single-tool">Large Heavy Pot With Lid</p>
+              <p class="single-tool">Measuring Spoons</p>
+              <p class="single-tool">Measuring Cups</p>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+    <!-- footer -->
+    <footer class="page-footer">
+      <p>
+        &copy; <span id="date"></span>
+        <span class="footer-logo">SimplyRecipes</span> Built by
+        <a href="https://www.johnsmilga.com/">Coding Addict</a>
+      </p>
+    </footer>
+    <script src="./js/app.js"></script>
+  </body>
+</html>

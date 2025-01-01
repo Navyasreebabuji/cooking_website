@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simply Recipes || Final</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <!-- normalize -->
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- main css -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/index.js"></script>
+    <script src="./js/app.js"></script>
+  </head>
+  <body>
+    <!-- nav  -->
+    <nav class="navbar">
+      <div class="nav-center">
+        <div class="nav-header">
+          <a href="index.html" class="nav-logo"></a>
+         
+          <img src="./assets/logo.svg" style="margin-right: 250px;" alt="simply recipes" />
+          <button class="nav-btn" aria-label="Toggle Menu" style="margin-right: 200px;">
+            ☰
+          </button>
+          </a>
+    
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link"> home </a>
+          <a href="about.html" class="nav-link"> about </a>
+          <a href="tags.html" class="nav-link"> tags </a>
+          <a href="recipes.html" class="nav-link"> recipes </a>
+        
+          </div>
+  
+         <div class="search">
+           <a href="search.html" style="display: inline-flex; align-items: center;">Search <img class="search-icon" src="./assets/search-icon.jpg" alt="search-img"></a>
+         </div>
+          <div class="nav-link contact-link">
+            <a href="contact.html" class="btn"> contact </a>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f8f8;
+      text-align: center;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      font-size: 2em;
+    }
+    #current-theme {
+      font-size: 1.2em;
+      color: #555;
+      margin: 10px 0;
+    }
+    .form-group {
+      margin: 15px 0;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1em;
+    }
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+    #submitted-recipes .recipe {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      border-radius: 6px;
+    }
+    /* Countdown Timer in Corner */
+    #countdown-timer {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="countdown-timer">Loading countdown...</div>
+
+  <div class="container">
+    <h2>Weekly Cooking Challenge</h2>
+    <p id="current-theme">Loading theme...</p>
+
+    <form id="recipe-form">
+      <div class="form-group">
+        <label for="recipe-name">Recipe Name</label>
+        <input type="text" id="recipe-name" name="recipe-name" required>
+      </div>
+      <div class="form-group">
+        <label for="recipe-description">Recipe Description</label>
+        <textarea id="recipe-description" name="recipe-description" required rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit Recipe</button>
+      </div>
+    </form>
+
+    <div id="submitted-recipes">
+      <h3>Submitted Recipes</h3>
+      <!-- Submitted recipes will appear here -->
+    </div>
+  </div>
+
+  <script>
+    // List of themes
+    const themes = [
+      "Pasta Challenge",
+      "Dessert Delight",
+      "Regional Cuisines",
+      "Healthy Meals",
+      "Quick Snacks",
+      "Vegan Creations",
+      "Fusion Foods"
+    ];
+
+    const themeKey = 'currentTheme'; // LocalStorage key for theme
+    const startDateKey = 'themeStartDate'; // LocalStorage key for theme start date
+
+    function getCurrentTheme() {
+      let currentTheme = localStorage.getItem(themeKey);
+      let themeStartDate = localStorage.getItem(startDateKey);
+
+      const now = new Date();
+
+      if (!currentTheme || !themeStartDate || new Date(themeStartDate).getTime() + 7 * 24 * 60 * 60 * 1000 <= now.getTime()) {
+        // Set new theme if none exists or 7 days have passed
+        const nextThemeIndex = currentTheme ? (themes.indexOf(currentTheme) + 1) % themes.length : 0;
+        currentTheme = themes[nextThemeIndex];
+        themeStartDate = now.toISOString(); // Update start date
+
+        localStorage.setItem(themeKey, currentTheme);
+        localStorage.setItem(startDateKey, themeStartDate);
+      }
+
+      return { currentTheme, themeStartDate };
+    }
+
+    function updateCountdown(startDate) {
+      const countdownTimer = document.getElementById('countdown-timer');
+      const challengeEndTime = new Date(startDate).getTime() + 7 * 24 * 60 * 60 * 1000;
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const timeRemaining = challengeEndTime - now;
+
+        if (timeRemaining <= 0) {
+          countdownTimer.textContent = 'Challenge Ended!';
+          clearInterval(timerInterval); // Stop the timer
+        } else {
+          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+          countdownTimer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      }
+
+      updateTimer(); // Initial update
+      const timerInterval = setInterval(updateTimer, 1000); // Update every second
+    }
+
+    // Get current theme and update the UI
+    const { currentTheme, themeStartDate } = getCurrentTheme();
+    document.getElementById('current-theme').textContent = `This week's theme: ${currentTheme}`;
+    updateCountdown(themeStartDate);
+
+    // Recipe Submission Logic
+    const recipeForm = document.getElementById('recipe-form');
+    const submittedRecipesContainer = document.getElementById('submitted-recipes');
+
+    recipeForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form submission
+
+      const recipeName = document.getElementById('recipe-name').value;
+      const recipeDescription = document.getElementById('recipe-description').value;
+
+      const recipeElement = document.createElement('div');
+      recipeElement.classList.add('recipe');
+      recipeElement.innerHTML = `
+        <h4>${recipeName}</h4>
+        <p><strong>Description:</strong> ${recipeDescription}</p>
+        <p><strong>Theme:</strong> ${currentTheme}</p>
+      `;
+
+      submittedRecipesContainer.appendChild(recipeElement);
+      recipeForm.reset();
+    });
+  </script>
+
+</body>
+</html>
+
